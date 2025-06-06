@@ -62,8 +62,31 @@ START_TEST(memchr_len_minus) {
 START_TEST(memchr_len_0_null) {
     char str[] = "Hello world";
     char c = 'd';
-    void *result = s21_memchr(str, c, 0);
-    ck_assert_ptr_eq(result, S21_NULL);
+    void *result1 = s21_memchr(str, c, 0);
+    void *result2 = memchr(str, c, 0);
+    ck_assert_uint_eq((char*)result1 - str, (char*)result2 - str);
+    ck_assert_ptr_eq(result1, S21_NULL);
+    ck_assert_uint_eq((char*)result1 - str, (char*)result2 - str);
+}
+END_TEST
+
+START_TEST(memchr_str_empty) {
+    char str[] = "";
+    char c = 'd';
+    void *result1 = s21_memchr(str, c, strlen(str));
+    void *result2 = memchr(str, c, strlen(str));
+    ck_assert_ptr_eq(result1, S21_NULL);
+    ck_assert_uint_eq((char*)result1 - str, (char*)result2 - str);
+}
+END_TEST
+
+START_TEST(memchr_c_minus) {
+    char str[] = "";
+    char c = -1;
+    void *result1 = s21_memchr(str, c, strlen(str));
+    void *result2 = memchr(str, c, strlen(str));
+    ck_assert_ptr_eq(result1, S21_NULL);
+    ck_assert_uint_eq((char*)result1 - str, (char*)result2 - str);
 }
 END_TEST
 
@@ -79,6 +102,8 @@ Suite *strlen_suite(void) {
     suite_add_tcase(s, tc_core);
     TCase *tc_null = tcase_create("null");
     tcase_add_test(tc_core, memchr_len_0_null);
+    tcase_add_test(tc_core, memchr_str_empty);
+    tcase_add_test(tc_core, memchr_c_minus);
     suite_add_tcase(s, tc_null);
     return s;
 }
