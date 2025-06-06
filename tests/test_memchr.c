@@ -3,7 +3,6 @@
 #include "s21_string.h"
 #include <string.h>
 
-
 START_TEST(memchr_first_symbol) {
     char str[] = "Hello world";
     char c = 'H';
@@ -109,7 +108,6 @@ Suite *strlen_suite(void) {
 }
 
 int main(void) {
-    printf("test");
     Suite *s = strlen_suite();
     SRunner *sr = srunner_create(s);
     srunner_run_all(sr, CK_NORMAL);
