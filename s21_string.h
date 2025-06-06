@@ -5,17 +5,17 @@
 
 typedef unsigned long s21_size_t;
 
-void *s21_memchr(const void *str, int c, size_t n);
-int s21_mmemcmp(const void *str1, const void *str2, size_t n);
-void *s21_mmemcpy(void *dest, const void *src, size_t n);
-void *s21_mmemset(void *str, int c, size_t n);
-char *s21_mstrncat(char *dest, const char *src, size_t n);
+void *s21_memchr(const void *str, int c, s21_size_t n);
+int s21_mmemcmp(const void *str1, const void *str2, s21_size_t n);
+void *s21_mmemcpy(void *dest, const void *src, s21_size_t n);
+void *s21_mmemset(void *str, int c, s21_size_t n);
+char *s21_mstrncat(char *dest, const char *src, s21_size_t n);
 char *s21_mstrchr(const char *str, int c);
-int s21_mstrncmp(const char *str1, const char *str2, size_t n);
-char *s21_mstrncpy(char *dest, const char *src, size_t n);
-size_t s21_mstrcspn(const char *str1, const char *str2);
+int s21_mstrncmp(const char *str1, const char *str2, s21_size_t n);
+char *s21_mstrncpy(char *dest, const char *src, s21_size_t n);
+s21_size_t s21_mstrcspn(const char *str1, const char *str2);
 char *s21_mstrerror(int errnum);
-size_t s21_mstrlen(const char *str);
+s21_size_t s21_mstrlen(const char *str);
 char *s21_mstrpbrk(const char *str1, const char *str2);
 char *s21_mstrrchr(const char *str, int c);
 char *s21_mstrstr(const char *haystack, const char *needle);
