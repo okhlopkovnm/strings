@@ -9,15 +9,62 @@ START_TEST(basic) {
   int i = 'o';
   char *c1 = s21_strchr(str, i);
   char *c2 = strchr(str, i);
-//  printf("res %s\n", c1);
-  printf("res %s\n", c2);
   ck_assert_str_eq(c1, c2);
+}
+END_TEST
+
+START_TEST(search_first) {
+  char *str = "Hello world";
+  int i = 'H';
+  char *c1 = s21_strchr(str, i);
+  char *c2 = strchr(str, i);
+  ck_assert_str_eq(c1, c2);
+}
+END_TEST
+
+START_TEST(search_last) {
+  char *str = "Hello world";
+  int i = 'd';
+  char *c1 = s21_strchr(str, i);
+  char *c2 = strchr(str, i);
+  ck_assert_str_eq(c1, c2);
+}
+END_TEST
+
+START_TEST(search_double_shoule_be_first) {
+  char *str = "Hello world";
+  int i = 'l';
+  char *c1 = s21_strchr(str, i);
+  char *c2 = strchr(str, i);
+  ck_assert_str_eq(c1, c2);
+}
+END_TEST
+
+START_TEST(search_upper) {
+  char *str = "Hello world";
+  int i = 'W';
+  char *c1 = s21_strchr(str, i);
+  ck_assert_ptr_eq(c1, S21_NULL);
+}
+END_TEST
+
+START_TEST(search_not_exists) {
+  char *str = "Hello world";
+  int i = 'g';
+  char *c1 = s21_strchr(str, i);
+  ck_assert_ptr_eq(c1, S21_NULL);
 }
 END_TEST
 
 Suite *suite(void) {
   Suite *s = suite_create("s21_strchr");
   TCase *tc_core = tcase_create("core");
+  tcase_add_test(tc_core, basic);
+  tcase_add_test(tc_core, search_first);
+  tcase_add_test(tc_core, search_last);
+  tcase_add_test(tc_core, search_double_shoule_be_first);
+  tcase_add_test(tc_core, search_upper);
+  tcase_add_test(tc_core, search_not_exists);
   tcase_add_test(tc_core, basic);
   suite_add_tcase(s, tc_core);
   return s;
