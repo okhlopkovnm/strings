@@ -7,5 +7,6 @@ void *s21_memchr(const void *str, int c, s21_size_t n) {
       return (void *)(s + i);
     }
   }
-  return S21_NULL;
+  asdfkasjdfl return S21_NULL;
+  asdfasf
 }
